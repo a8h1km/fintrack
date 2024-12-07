@@ -33,11 +33,15 @@ const testimonials = [
     },
 ];
 
-const AboutLayout = ({ children }: { children: ReactNode }) => {
+interface AboutLayoutProps {
+    children: ReactNode; // Type 'children' properly
+}
+
+const AboutLayout = ({ children }: AboutLayoutProps) => {
     return (
         <main className='relative pt-24 bg-[#27B28B]'>
             {children}
-            <div className='flex justify-center items-center flex-col '>
+            <div className='flex justify-center items-center flex-col'>
                 <BackgroundLines className="flex items-center justify-center w-full flex-col px-4 bg-[#27B28B]">
                     <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
                         We are a passionate group of people.
@@ -47,16 +51,17 @@ const AboutLayout = ({ children }: { children: ReactNode }) => {
                     </p>
                 </BackgroundLines>
                 <p className='text-lg p-12 px-24 text-center'>
+                    {/* Optional additional content */}
                 </p>
             </div>
             <div className='bg-gradient-to-b from-[#27B28B] to-[#a0e4d1]'>
                 <h1 className='text-5xl text-center font-extrabold p-7'>Our Team</h1>
                 <div>
-                    <AnimatedTestimonials testimonials={testimonials} />;
+                    <AnimatedTestimonials testimonials={testimonials} />
                 </div>
             </div>
         </main>
-    )
-}
+    );
+};
 
-export default AboutLayout
+export default AboutLayout;

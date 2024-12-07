@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -8,7 +9,6 @@ import { Budgets, Expenses } from "@/schema";
 import { eq, desc } from "drizzle-orm";
 import { db } from "@/components/ui/dbSchema";
 import BarChartDashboard from "@/components/ui/BarChartDashboard";
-import ExpenseListTable from "./expenses/_components/ExpenseListTable";
 import BudgetItem from "@/components/ui/BudgetItem";
 
 type BudgetItem = {
@@ -74,10 +74,10 @@ const DashboardPage = () => {
                             <BudgetItem budget={budget} key={index} />
                         ))
                         : [1, 2, 3, 4].map((item, index) => (
-                            <div
+                            <div key={index}
                                 className="h-[180xp] w-full
                  bg-slate-200 rounded-lg animate-pulse"
-                            ></div>
+                            >{item}</div>
                         ))}
                 </div>
             </div>

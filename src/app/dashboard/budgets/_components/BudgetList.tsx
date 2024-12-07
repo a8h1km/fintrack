@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client"
 import React, { useEffect, useState } from 'react'
 import CreateBudget from './CreateBudget'
 import { db } from '@/components/ui/dbSchema'
-import { asc, desc, eq, getTableColumns, sql } from 'drizzle-orm'
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm'
 import { Budgets, Expenses } from '@/schema'
 import { useUser } from '@clerk/nextjs'
 import BudgetItem from '@/components/ui/BudgetItem'

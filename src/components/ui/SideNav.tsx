@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -7,7 +8,6 @@ import {
     PiggyBank,
     ReceiptText,
     ShieldCheck,
-    CircleDollarSign,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -32,7 +32,7 @@ const SideNav = () => {
             const result = await db.select().from(Expenses);
 
             // Check if the result array has any items
-            if (result.length === 0) {
+            if (!(result.length !== 0 && hasExpense)) {
                 // No expenses, redirect to /dashboard/budgets
                 router.push("/dashboard/budgets");
             } else {

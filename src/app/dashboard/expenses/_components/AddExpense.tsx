@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { db } from "@/components/ui/dbSchema";
-import { Budgets, Expenses } from "@/schema";
+import { Expenses } from "@/schema";
 import { Loader } from "lucide-react";
 import moment from "moment";
 import React, { useState } from "react";
@@ -14,7 +14,7 @@ interface AddExpenseProps {
     refreshData2: () => void;
 }
 
-function AddExpense({ budgetId, user, refreshData1, refreshData2 }: AddExpenseProps) {
+function AddExpense({ budgetId, refreshData1, refreshData2 }: AddExpenseProps) {
     const [name, setName] = useState<string>("");
     const [amount, setAmount] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);

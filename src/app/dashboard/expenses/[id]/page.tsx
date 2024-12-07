@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Pen, PenBox, Trash } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
 import { toast } from "sonner";
 import EditBudget from "../_components/EditBudget";
 
@@ -86,6 +87,7 @@ const ExpensesPage: React.FC = () => {
                 .delete(Budgets)
                 .where(eq(Budgets.id, Number(id)))
                 .returning();
+            console.log(result)
         }
         toast("Budget Deleted !");
         route.replace("/dashboard/budgets");

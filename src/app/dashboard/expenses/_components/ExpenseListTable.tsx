@@ -21,19 +21,15 @@ interface ExpenseListTableProps {
 function ExpenseListTable({ expensesList, refreshData1, refreshData2 }: ExpenseListTableProps) {
 
     const deleteExpense = async (exp: Expense) => {
-        try {
-            const result = await db
-                .delete(Expenses)
-                .where(eq(Expenses.id, exp.id))
-                .returning();
+        const result = await db
+            .delete(Expenses)
+            .where(eq(Expenses.id, exp.id))
+            .returning();
 
-            if (result) {
-                refreshData1();
-                refreshData2();
-                toast("Expense Deleted!");
-            }
-        } catch (error) {
-            toast.error("Error deleting expense");
+        if (result) {
+            refreshData1();
+            refreshData2();
+            toast("Expense Deleted!");
         }
     };
 

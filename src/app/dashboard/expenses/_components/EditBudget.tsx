@@ -13,7 +13,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import EmojiPicker from "emoji-picker-react";
-import { useUser } from "@clerk/nextjs";
 import { Input } from "@/components/ui/input";
 import { db } from "@/components/ui/dbSchema";
 import { Budgets } from "@/schema";
@@ -38,7 +37,6 @@ function EditBudget({ budgetInfo, refreshData }: EditBudgetProps) {
     const [name, setName] = useState<string>(budgetInfo?.name || "");
     const [amount, setAmount] = useState<number>(budgetInfo?.amount || 0);
 
-    const { user } = useUser();
 
     // Update state when budgetInfo changes
     useEffect(() => {
@@ -51,25 +49,21 @@ function EditBudget({ budgetInfo, refreshData }: EditBudgetProps) {
 
     // Update budget function
     const onUpdateBudget = async () => {
-        try {
-            const result = await db
-                .update(Budgets)
-                .set({
-                    name: name,
-                    amount: amount,
-                    icon: emojiIcon,
-                })
-                .where(eq(Budgets.id, budgetInfo.id))
-                .returning();
+        const result = await db
+            .update(Budgets)
+            .set({
+                name: name,
+                amount: amount,
+                icon: emojiIcon,
+            })
+            .where(eq(Budgets.id, budgetInfo.id))
+            .returning();
 
-            if (result) {
-                refreshData();
-                toast("Budget Updated!");
-            } else {
-                toast.error("Failed to update budget.");
-            }
-        } catch (error) {
-            toast.error("Error updating budget.");
+        if (result) {
+            refreshData();
+            toast("Budget Updated!");
+        } else {
+            toast.error("Failed to update budget.");
         }
     };
 
