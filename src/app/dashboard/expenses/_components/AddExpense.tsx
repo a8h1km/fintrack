@@ -6,7 +6,7 @@ import { Loader } from "lucide-react";
 import moment from "moment";
 import React, { useState } from "react";
 import { toast } from "sonner";
-
+import { useUser } from "@clerk/nextjs";
 interface AddExpenseProps {
     budgetId: number;
     user: string;
@@ -18,6 +18,7 @@ function AddExpense({ budgetId, refreshData1, refreshData2 }: AddExpenseProps) {
     const [name, setName] = useState<string>("");
     const [amount, setAmount] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const { user } = useUser()
 
     const addNewExpense = async () => {
         if (!name || !amount) return;
@@ -33,6 +34,7 @@ function AddExpense({ budgetId, refreshData1, refreshData2 }: AddExpenseProps) {
                 amount: parsedAmount,
                 budgetId,
                 createdAt: moment().format("YYYY-MM-DD"),
+                createdBy: user?.primaryEmailAddress?.emailAddress || null
             })
             .returning({ insertedId: Expenses.id });
 

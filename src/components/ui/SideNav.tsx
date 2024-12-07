@@ -6,7 +6,6 @@ import Image from "next/image";
 import {
     LayoutGrid,
     PiggyBank,
-    ReceiptText,
     ShieldCheck,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -53,18 +52,12 @@ const SideNav = () => {
         },
         {
             id: 2,
-            name: "Budgets",
+            name: "Budgets and Expenses",
             icon: PiggyBank,
             path: "/dashboard/budgets",
         },
         {
             id: 3,
-            name: "Expenses",
-            icon: ReceiptText,
-            path: "/dashboard/expenses/2",
-        },
-        {
-            id: 4,
             name: "Upgrade",
             icon: ShieldCheck,
             path: "/pricing",

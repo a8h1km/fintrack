@@ -46,7 +46,7 @@ const BudgetItem: React.FC<BudgetItemProps> = ({ budget }) => {
                 <div className="mt-5">
                     <div className="flex items-center justify-between mb-3">
                         <h2 className="text-xs text-slate-400">
-                            ${budget?.totalSpend || 0} Spend
+                            ${budget?.totalSpend || 0} Spent
                         </h2>
                         <h2 className="text-xs text-slate-400">
                             ${budget?.amount - (budget?.totalSpend || 0)} Remaining

@@ -10,6 +10,7 @@ interface Expense {
     amount: string;
     budgetId: number;
     createdAt: string;
+    createdBy: string;
 }
 
 interface ExpenseListTableProps {

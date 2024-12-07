@@ -48,6 +48,7 @@ const ExpensesPage: React.FC = () => {
                     ...getTableColumns(Budgets),
                     totalSpend: sql`sum(${Expenses.amount})`.mapWith(Number),
                     totalItem: sql`count(${Expenses.id})`.mapWith(Number),
+
                 })
                 .from(Budgets)
                 .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
@@ -67,11 +68,9 @@ const ExpensesPage: React.FC = () => {
     };
 
     const getExpensesList = async (budgetId: number) => {
-        const result = await db
-            .select()
-            .from(Expenses)
-            .where(eq(Expenses.budgetId, budgetId))
-            .orderBy(desc(Expenses.id));
+        const result = await db.select().from(Expenses).where(
+            eq(Expenses.budgetId, budgetId))
+            .orderBy(desc(Expenses.id));  // .orderBy should be outside of .where
         setExpensesList(result);
         console.log(result);
     };
